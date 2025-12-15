@@ -15,7 +15,7 @@
 /bu/
 
 ## User settings
-/*.xcodeproj/
+./*.xcodeproj/
 xcuserdata/
 *.xuserstate
 
