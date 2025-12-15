@@ -2247,7 +2247,7 @@ int Solution::lc_127(string beginWord, string endWord, vector<string>& wordList,
         // a bit optimization
         if (dict.find(endG) == dict.end()) return 0;
 
-        auto deep{0};   // for testing
+//        auto deep{0};   // for testing
 
         while (!bfsQ.empty()) {
             auto [cur, lres] = bfsQ.front();
@@ -2258,7 +2258,7 @@ int Solution::lc_127(string beginWord, string endWord, vector<string>& wordList,
 
             if (cur == endG) return lres;
 
-            auto cc{0};
+//            auto cc{0};
             for (auto i{cur.begin()}; i != cur.end(); std::advance(i,1)){
                 // auto tmp = cur;
                 auto c = *i;
@@ -3578,8 +3578,8 @@ int Solution::lc_1855(vector<int>& nums1, vector<int>& nums2, int mode){
     // iterators way
     // about two times slower then counters way
     auto l_iter = [&nums1, &nums2](){
-        auto lres{0};
-        auto dist{0};
+        std::ptrdiff_t lres{0};
+        std::ptrdiff_t dist{0};
         for (auto n1i{std::cbegin(nums1)}; n1i != std::cend(nums1); ++n1i ) {
             dist = std::distance(std::cbegin(nums1), n1i);
             if ((dist < std::size(nums2)) && *n1i <= *std::next(std::cbegin(nums2), dist)) {
@@ -3589,7 +3589,7 @@ int Solution::lc_1855(vector<int>& nums1, vector<int>& nums2, int mode){
                 // cout << " 2200 n1i=" << *n1i << " it=" << *it << " dist=" << std::distance(it, std::crend(nums2))  << endl;
 
                 if (lres < ((std::distance(it, std::crend(nums2)) - 1)- dist))
-                    lres = ((std::distance(it, std::crend(nums2)) - 1)- dist);
+                    lres = ((std::distance(it, std::crend(nums2)) - 1) - dist);
 
             }
         }
@@ -3630,7 +3630,7 @@ int Solution::lc_1855(vector<int>& nums1, vector<int>& nums2, int mode){
     int res{0};
 
     if (mode == 1) res = static_cast<int>(l_count());
-    else res = l_iter();
+    else res = static_cast<int>(l_iter());
 
     return res;
 }
