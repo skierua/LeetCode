@@ -17,6 +17,8 @@
 ## User settings
 /*.xcodeproj/
 xcuserdata/
+*.xuserstate
+
 
 ## Obj-C/Swift specific
 *.hmap
