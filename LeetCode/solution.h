@@ -32,13 +32,15 @@ private:
     // Node* vecToNode
 
     static void prn( const std::string &res, const std::string &shouldBe, const std::string &note );
+    /* deprecated
+     * use temp library vkstd::toString instead
 
     static string vecToString(const vector<int>& vec);
 
     static string vecToString(const vector<std::string>& vec);
 
     static string vecToString(vector<char>& vec);
-
+*/
     string mlc_151(string s);  //reverseWords
 
     Node<int>* mlc_82(Node<int>*);

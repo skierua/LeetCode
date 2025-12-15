@@ -24,7 +24,8 @@ void Solution::prn( const std::string &res, const std::string &shouldBe, const s
               << "\033[0m" << std::endl;
 }
 
-
+/* deprecated
+ * use temp library vkstd::toString instead
 string Solution::vecToString(const vector<int>& vec) {
 
     string rslt = "";
@@ -70,7 +71,7 @@ string Solution::vecToString(vector<char>& vec) {
     return "["+rslt+"](" + to_string(count)+")";
 
 }
-
+*/
 
 // int nextGreaterElement(int n)
 const int Solution::lc_556(int n, int mode) {
@@ -1118,7 +1119,7 @@ int Solution::lc_792(string s, vector<string>& words, int mode) const{
     }
 
     // cout << "dict ";
-    // for (const auto& v: dict) cout << v.first << "/" << vecToString(v.second) << " ";
+    // for (const auto& v: dict) cout << v.first << "/" << vkstd::toString(v.second) << " ";
     // cout << endl;
 
     return res;
@@ -1148,7 +1149,7 @@ void Solution::lc_792_test() const{
             auto vec = get<1>(v);
             auto res = std::to_string(lc_792(inp, vec, m));
             auto shouldBe = std::to_string(get<2>(v));
-            auto note = inp + ":" + vecToString(vec);
+            auto note = inp + ":" + vkstd::toString(vec);
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -1177,7 +1178,7 @@ int Solution::lc_300(vector<int>& nums, int mode) const{
                     // dp[i] =  dp[j] + 1;
                 }
             }
-            // cout << vecToString(dp) << endl;
+            // cout << vkstd::toString(dp) << endl;
         }
 
         // Return the maximum length among all possible ending positions
@@ -1193,7 +1194,7 @@ int Solution::lc_300(vector<int>& nums, int mode) const{
             for (auto k{0}; k < i; ++k){
                 if (nums[k] < nums[i]) res[i] = max(res[i], res[k]+1);
             }
-            // cout << " len=" << len << " " << vecToString(res) << endl;
+            // cout << " len=" << len << " " << vkstd::toString(res) << endl;
         }
         return *max_element(res.begin(), res.end());
     };
@@ -1244,7 +1245,7 @@ void Solution::lc_300_test() const {
             auto inp = v.first;
             auto res = std::to_string(lc_300(inp, m));
             auto shouldBe = std::to_string(v.second);
-            auto note = vecToString(v.first);
+            auto note = vkstd::toString(v.first);
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -1304,7 +1305,7 @@ int Solution::lc_209(int target, vector<int>& nums, int mode) const{
     };
     // cout << "555 res=" << res << endl;
 
-    // cout<< vecToString(nums) << " " << vecToString(acum)
+    // cout<< vkstd::toString(nums) << " " << vkstd::toString(acum)
     //      << endl;
     if (mode == 1) return static_cast<int>(l2(target));
     else if (mode == 2) return lfastest(target);
@@ -1326,7 +1327,7 @@ void Solution::lc_209_test() const{
             auto targ = get<1>(v);
             auto res = std::to_string(lc_209(targ, inp, m));
             auto shouldBe = std::to_string(get<2>(v));
-            auto note = std::to_string(targ) + ":" + vecToString(inp);
+            auto note = std::to_string(targ) + ":" + vkstd::toString(inp);
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -1457,7 +1458,7 @@ void Solution::lc_3153_test() const {
             auto inp = v.first;
             auto res = std::to_string(lc_3153(inp, m));
             auto shouldBe = std::to_string(v.second);
-            auto note = vecToString(v.first);
+            auto note = vkstd::toString(v.first);
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -1536,7 +1537,7 @@ void Solution::lc_477_test() const {
             auto inp = v.first;
             auto res = std::to_string(lc_477(inp, m));
             auto shouldBe = std::to_string(v.second);
-            auto note = vecToString(inp);
+            auto note = vkstd::toString(inp);
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -1747,7 +1748,7 @@ void Solution::lc_318_test() const {
             auto inp = v.first;
             auto res = std::to_string(lc_318(inp, m));
             auto shouldBe = std::to_string(v.second);
-            auto note = vecToString( inp );
+            auto note = vkstd::toString( inp );
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -1889,7 +1890,7 @@ void Solution::lc_1191_test() const {
             auto qty = get<1>(v);
             auto res = std::to_string(lc_1191(inp, qty, m));
             auto shouldBe = std::to_string(get<2>(v));
-            auto note = vecToString(inp) + "*" + std::to_string(qty);
+            auto note = vkstd::toString(inp) + "*" + std::to_string(qty);
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -3106,7 +3107,7 @@ void Solution::lc_2971_test(){
             auto inp = v.first;
             const auto res = std::to_string(lc_2971(inp, m));
             const auto shouldBe = std::to_string(v.second);
-            const auto note = vecToString(v.first);
+            const auto note = vkstd::toString(v.first);
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -3198,7 +3199,7 @@ void Solution::lc_611_test(){
             auto inp = v.first;
             const auto res = std::to_string(lc_611(inp, m));
             const auto shouldBe = std::to_string(v.second);
-            const auto note = vecToString(v.first);
+            const auto note = vkstd::toString(v.first);
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -3333,7 +3334,7 @@ int Solution::lc_150(vector<string>& tokens, int mode){
     };
 
     auto l_iap = [&tokens](){
-        // cout << "vec=" << vecToString(tokens) << endl;
+        // cout << "vec=" << vkstd::toString(tokens) << endl;
         // if (std::size(tokens) == 1) {
         //     if(std::isdigit(tokens[0][tokens[0].size()-1]))
         //         return std::stoi(tokens[0]);
@@ -3359,7 +3360,7 @@ int Solution::lc_150(vector<string>& tokens, int mode){
             if (posA >=0 && tokens[posA].empty()){
                 for (posA = posB-1; posA >= 0 && (tokens[posA].empty() || !std::isdigit(tokens[posA][tokens[posA].size()-1])); --posA){;}
             }
-            // cout << "555" << " i=" << i << " A=" << posA << " B=" << posB << " vec=" << vecToString(tokens) << endl;
+            // cout << "555" << " i=" << i << " A=" << posA << " B=" << posB << " vec=" << vkstd::toString(tokens) << endl;
             valA = posA < 0 ? 0 : std::stoi(tokens[posA]);
             valB = posB < 0 ? 0 : std::stoi(tokens[posB]);
             if (posA >= 0) tokens[posA] = std::string("");
@@ -3377,7 +3378,7 @@ int Solution::lc_150(vector<string>& tokens, int mode){
             posB = i;
 
         }
-        // cout << "vec=" << vecToString(tokens) << endl;
+        // cout << "vec=" << vkstd::toString(tokens) << endl;
 
         return std::stoi(tokens[std::size(tokens)-1]);
     };
@@ -3411,7 +3412,7 @@ void Solution::lc_150_test(){
             auto inp = v.first;
             auto res = std::to_string(lc_150(inp,m));
             auto shouldBe = std::to_string(v.second);
-            auto note = vecToString(v.first);
+            auto note = vkstd::toString(v.first);
             prn(res, shouldBe, note);
         }
         const auto t2 = std::chrono::steady_clock::now();
@@ -3679,7 +3680,7 @@ void Solution::lc_1855_test(){
         std::cout << "mode=" << std::to_string(m) << std::endl;
         const auto t1 = std::chrono::steady_clock::now();
         for (auto v: data) {
-            // cout << "1 or=" << vecToString(get<0>(v)) << " k=" << std::to_string(get<1>(v))<< " sB=" << vecToString(get<2>(v)) << std::endl;
+            // cout << "1 or=" << vkstd::toString(get<0>(v)) << " k=" << std::to_string(get<1>(v))<< " sB=" << vkstd::toString(get<2>(v)) << std::endl;
             auto orig = stringify(get<0>(v));
             // const std::string ti =  std::string{" time="} + to_string(chrono::duration_cast<chrono::microseconds>(t2-t1).count()) + std::string{" μs\n"};
             auto res = lc_1855(get<0>(v),get<1>(v),m);
