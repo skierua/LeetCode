@@ -30,7 +30,8 @@ int main(int argc, const char * argv[]) {
     auto sol = std::make_unique<Solution>();
             // Solution sol;
 
-    sol->lc_1027_test();
+    sol->lc_81_test();
+//   sol->lc_1027_test();
     // sol->lc_658_test();
     // sol->lc_400_test();
     // sol->lc_825_test();

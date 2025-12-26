@@ -52,6 +52,9 @@ private:
 
     // ListNode* deleteMiddle(ListNode* );
     Node<int>* mlc_2095(Node<int>* );
+    
+//    bool search(vector<int>& nums, int target);
+    bool lc_81(vector<int>& nums, int target) const;
 
     // vector<int> findClosestElements(vector<int>& arr, int k, int x)
     vector<int> lc_658(vector<int>& arr, int k, int x, int mode=0) const;
@@ -147,6 +150,7 @@ public:
 
     void test();
 
+    void lc_81_test() const;
     void lc_1027_test() const;
     void lc_658_test() const;
     void lc_400_test() const;

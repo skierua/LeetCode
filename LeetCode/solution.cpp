@@ -73,6 +73,83 @@ string Solution::vecToString(vector<char>& vec) {
 }
 */
 
+bool Solution::lc_81(vector<int>& nums, int target) const{
+    auto len = nums.size();
+    bool res{false};
+    if (len == 0) return res;
+    if (len == 1) {
+        if (nums[0] == target) return true;
+        else return res;
+    }
+
+    size_t lf{0}, md{0}, rt{len-1};
+
+    while (lf < rt){
+        md = lf + (rt - lf)/2; //break;
+        // cout << " md="<< md << " lf=" << lf  << " rt=" << rt
+        //      << " val=" << nums[md]
+        // << endl;
+        if (nums[md] == target
+            || nums[lf] == target
+            || nums[rt] == target){
+            res = true;
+            break;
+        }
+        if (nums[md] == nums[lf] && nums[md] == nums[rt]) {
+            ++lf;
+            --rt;
+            // cout << "EQUAL md="<< md << " lf=" << lf  << " rt=" << rt
+            // << endl;
+            continue;
+        }
+        if (nums[lf] <= nums[md]) {
+            if (target < nums[md] && target >= nums[lf]) {
+                rt = md;
+                // break;
+            } else  lf = ++md;
+        } else {
+            if (target > nums[md] && target <= nums[rt]) {
+                lf = ++md;
+                // break;
+            } else  rt = md;
+        }
+    }
+    // if ( !res && lf < len )  res = (nums[lf] == target);
+    // cout << " md="<< md << " lf=" << lf  << " rt=" << rt
+    // << endl;
+
+    return res;
+}
+
+void Solution::lc_81_test() const{
+    vector< pair<pair<vector<int>,int>, bool> >
+        data = {
+            {{{2,5,6,0,0,1,1,1,1,1,1,1,2}, 0}, true },
+            // ,{{{2,5,6,0,0,1,2},3}, false }
+            // ,{{{2},2}, true }
+            // ,{{{2},3}, false }
+            // ,{{{2,2},2}, true }
+            // ,{{{2,2},3}, false }
+            // ,{{{2,5,6,0,0,1,1,1,1,1,1,1,2}, 6}, true }
+            // ,{{{2,5,6,0,0,1,1,1,1,1,1,1,2}, 7}, false }
+            {{{1,0,1,1,1},0}, true },
+            {{{1,1,1,0,1},0}, true },
+            {{{1,3,1,1,1},3}, true },
+            {{{1,1,1,3,1},3}, true },
+            {{{2,1,1,2,2,2,2},1}, true },
+                };
+    // string res{""};
+    auto comp{false} ;
+    for (auto& v: data) {
+        comp = lc_81(v.first.first, v.first.second );
+        cout << ((comp ? 1 : 0) == (v.second ? 1 : 0) ? "+ " : "- ")
+             << "data= " << stringify(v.first.first)
+             << " t= " << v.first.second
+             << " res=" << (comp ? "TRUE " : "FALSE ")
+             << endl;
+    }
+}
+
 // int nextGreaterElement(int n)
 const int Solution::lc_556(int n, int mode) {
 
