@@ -53,6 +53,9 @@ private:
     // ListNode* deleteMiddle(ListNode* );
     Node<int>* mlc_2095(Node<int>* );
     
+//    void rotate(vector<int>& nums, int k, int mode = 0)
+    void lc_189(vector<int>& nums, int k, int mode = 0) const;
+    
 //    bool search(vector<int>& nums, int target);
     bool lc_81(vector<int>& nums, int target) const;
 
@@ -150,6 +153,7 @@ public:
 
     void test();
 
+    void lc_189_test() const;
     void lc_81_test() const;
     void lc_1027_test() const;
     void lc_658_test() const;

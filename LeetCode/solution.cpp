@@ -73,6 +73,94 @@ string Solution::vecToString(vector<char>& vec) {
 }
 */
 
+void Solution::lc_189(vector<int>& nums, int k, int mode) const{
+    if (!(k < std::size(nums))) k %= std::size(nums);
+    // std::cout << "k=" << std::to_string(k) << std::endl;
+    if (!(k > 0)) return;
+    if (!(nums.size() > 0)) return;
+
+    auto zerospace = [&nums] (auto k){
+        std::reverse(std::begin(nums), std::end(nums));
+        for (auto i{0}; i < k/2; ++i){
+            std::iter_swap(std::next(std::begin(nums),i), std::next(std::begin(nums),k-i-1));
+        }
+        for (auto i{0}; i < (nums.size()-k)/2; ++i){
+            // std::cout << "lf=" << *std::next(std::begin(nums),i) << " rt=" << *std::next(std::begin(nums),k-i-1) << std::endl;
+
+            std::iter_swap(std::next(std::begin(nums),k+i), std::next(std::end(nums),-(i+1)));
+        }
+        return;
+    };
+
+    // mode 1
+    auto brutal = [&nums] (auto k) {
+        // auto len = std::size(nums);
+        vector<int> res{};
+        res.reserve(std::size(nums));
+        res.insert(std::end(res),
+                   std::next(std::end(nums),-k),
+                   std::end(nums));
+
+        res.insert(std::end(res),
+                   std::begin(nums),
+                   std::next(std::end(nums),-k));
+
+        nums.clear();
+        nums.insert(std::end(nums),std::begin(res), std::end(res));
+        return;
+    };
+    
+    auto l_vkstd =[&nums] (auto k) {
+        vkstd::rotate(nums, k);
+        return;
+    };
+
+    if (mode == 1) brutal(k);
+    else if (mode == 2) l_vkstd(k);
+        else zerospace(k);
+
+}
+
+void Solution::lc_189_test() const {
+    vector< tuple<vector<int>, int, vector<int> > > data =
+        {
+        { {1,2,3,4,5,6,7}, 3, {5,6,7,1,2,3,4}},
+        // { {1,2,3,4,5,6,7}, 3, {1,2,3,4,5,6,7}},
+        { {1,2,3,4,5,6,7,8,9,10,11}, 4, {8,9,10,11,1,2,3,4,5,6,7}},
+        { {1,2,3,4,5,6,7}, 1, {7,1,2,3,4,5,6}},
+        { {1,2,3,4,5,6,7,8,9,10,11}, 5, {7,8,9,10,11,1,2,3,4,5,6}},
+        { {1,2,3,4,5,6,7,8,9,10,11}, 4, {8,9,10,11,1,2,3,4,5,6,7}},
+        { {-1,-100,3,99}, 2, {3,99,-1,-100}},
+        { {-1}, 2, {-1}},
+        { {}, 5, {}},
+        };
+
+    for (auto m: {0,1,2}){
+        std::cout << "mode=" << std::to_string(m) << std::endl;
+        const auto t1 = std::chrono::steady_clock::now();
+        for (const auto& v: data) {
+            // cout << "1 or=" << vecToString(get<0>(v)) << " k=" << std::to_string(get<1>(v))<< " sB=" << vecToString(get<2>(v)) << std::endl;
+            auto orig = vkstd::toString(get<0>(v));
+            auto vec_to_rotate = get<0>(v);
+            lc_189(vec_to_rotate, get<1>(v));
+            // const std::string ti =  std::string{" time="} + to_string(chrono::duration_cast<chrono::microseconds>(t2-t1).count()) + std::string{" μs\n"};
+            auto res = vkstd::toString(vec_to_rotate);
+            // get<0>(v);
+            auto shouldBe = vkstd::toString(get<2>(v));
+            std::cout << ((res == shouldBe) ? "+++ " : "--- ")
+                      << "orig= " << orig
+                      << " k= " << std::to_string(get<1>(v))
+                      << " res= " << res
+                      << " sB=" << shouldBe
+                      << std::endl;
+        }
+        const auto t2 = std::chrono::steady_clock::now();
+        std::cout << std::string{" time="} + to_string(chrono::duration_cast<chrono::microseconds>(t2-t1).count()) + std::string{" μs\n"}<< std::endl;
+    }
+
+}
+
+
 bool Solution::lc_81(vector<int>& nums, int target) const{
     auto len = nums.size();
     bool res{false};

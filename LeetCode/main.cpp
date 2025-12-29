@@ -30,7 +30,8 @@ int main(int argc, const char * argv[]) {
     auto sol = std::make_unique<Solution>();
             // Solution sol;
 
-    sol->lc_81_test();
+    sol->lc_189_test();
+//    sol->lc_81_test();
 //   sol->lc_1027_test();
     // sol->lc_658_test();
     // sol->lc_400_test();
@@ -75,6 +76,6 @@ int main(int argc, const char * argv[]) {
 */
 
  //    return 0;
-    std::cout << "Hello, World!\n";
+//    std::cout << "Hello, World!\n";
     return EXIT_SUCCESS;
 }
